@@ -1,8 +1,4 @@
-
-```Javascript
-
 pragma solidity ^0.6.0;
-
 
 contract FanFest {
     
@@ -81,15 +77,12 @@ contract FanFest {
         
     }
     
-    
-    //Based on Fan address, fetching all user data, only admin can execute this
+  
+   //Based on Fan address, fetching all user data, only admin can execute this
     function getFanData(address _useraddress) external view onlyAdmin returns (string memory, uint, string memory){
         
         return (fandataMapping[_useraddress].name, fandataMapping[_useraddress].age, fandataMapping[_useraddress].promoCodeUsed);
         
     }
-    
+   
 }
-
-```
-
