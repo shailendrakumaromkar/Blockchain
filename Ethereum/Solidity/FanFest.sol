@@ -1,3 +1,5 @@
+
+```javascript
 pragma solidity ^0.6.0;
 
 contract FanFest {
@@ -86,3 +88,4 @@ contract FanFest {
     }
    
 }
+```
