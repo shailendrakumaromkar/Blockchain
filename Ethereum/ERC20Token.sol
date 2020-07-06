@@ -4,7 +4,7 @@ pragma solidity ^0.6.0;
 interface tokenRecipient {
     function recieveApproval (address _sender, uint _tokenAmount, address _token, bytes calldata  _data) external;}
 
-
+//Defining owner & can assign new ownership
 contract owned {
     
      address owner;
@@ -14,11 +14,11 @@ contract owned {
      }
      
       modifier onlyOwner() {
-        
         require(owner==msg.sender);
         _;
     }
     
+    //Transferring ownership
     function transferOwenrship(address _newOwner) public onlyOwner {
         owner=_newOwner;
     }
@@ -51,7 +51,16 @@ contract OmkarERC20Token is owned {
         
     }
     
+    //Transfer token to receiver
+     function transfer(address _receiever, uint _token) payable external returns(bool success) {
+        
+        _transfer(msg.sender,_receiever,_token);
+        
+          return true; 
+          
+        }
     
+    //Created new function so that originator cannot give same as reciever address
     function _transfer(address _sender, address _receiever, uint _token) internal {
     
         require(balanceOf[_sender] >= _token);
@@ -68,18 +77,9 @@ contract OmkarERC20Token is owned {
         
        emit Transfer(_sender, _receiever, _token);
         assert(balanceOf[_sender]+balanceOf[_receiever]==oldBalance); 
-    }
+    }   
     
-    
-    function transfer(address _receiever, uint _token) payable external returns(bool success) {
-        
-        _transfer(msg.sender,_receiever,_token);
-        
-          return true; 
-          
-        }
-    
-    
+    //Approving spender to transfer token on owner behalf
     function approve(address _spender, uint _token) onlyOwner public returns (bool success) {
         
         allowance[msg.sender][_spender] = _token;
@@ -90,6 +90,7 @@ contract OmkarERC20Token is owned {
     }
     
     
+    //Spender is transferring allowed token from sender to reciever
     function transferFrom(address _sender, address _receiever, uint _token) payable external returns (bool success) {
         
         require(_token<=allowance[_sender][msg.sender]);
@@ -97,8 +98,7 @@ contract OmkarERC20Token is owned {
        
        _transfer(_sender,_receiever,_token);
         
-       
-         return true;
+       return true;
           
         
     }
@@ -126,6 +126,7 @@ contract OmkarERC20Token is owned {
         return true;
     }    
     
+    //Destroying token for other address
     function burnFrom(address _sender, uint _token) external returns(bool success) {
         
         require(balanceOf[_sender] >=_token);
@@ -137,14 +138,14 @@ contract OmkarERC20Token is owned {
         return true;
     }
     
-    
+    //adding token for address
     function mint(address _targetAddress,  uint _newtoken) onlyOwner public {
         
         balanceOf[_targetAddress] +=_newtoken;
         totalSupply+=_newtoken;
     }
     
-    
+    //Freezing any fake account
     function freezeAccount(address _freezeAccountAddress, bool _isFreeze) onlyOwner public {
         
         frozenAccount[_freezeAccountAddress]=_isFreeze;
