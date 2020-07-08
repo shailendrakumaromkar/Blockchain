@@ -1,1 +1,2 @@
+pragma 
 Voting.sol
