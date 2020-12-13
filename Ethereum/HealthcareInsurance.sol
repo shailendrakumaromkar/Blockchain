@@ -3,6 +3,7 @@ pragma solidity ^0.6.0;
 contract Insurance {
     address owner;
     
+    //struct define
     struct Patient {
         bool ispatientidgenerated;
         string name;
