@@ -1,6 +1,6 @@
 pragma solidity ^0.6.0;
 
-
+//interface
 interface tokenRecipient {
     function recieveApproval (address _sender, uint _tokenAmount, address _token, bytes calldata  _data) external;}
 
