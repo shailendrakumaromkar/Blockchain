@@ -3,6 +3,7 @@ pragma solidity ^0.6.0;
 contract Logistics {
     address owner;
     
+    //struct define
     struct orderDetails{
         bool isOrderIdGenerated;
         uint itemId;
