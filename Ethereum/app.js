@@ -17,7 +17,7 @@ web3.eth.getBalance(account2,(err,balance) => {
 })
 
 
-// Build The Transaction
+// Build The Transactions
 web3.eth.getTransactionCount(account1,(err,txCount)=>{
 
     const txObject={
