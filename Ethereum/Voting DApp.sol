@@ -1,7 +1,7 @@
 pragma solidity ^0.6.0;
 
 contract Voting {
-    
+    //struct
     struct Candidate {
         
         uint id;
