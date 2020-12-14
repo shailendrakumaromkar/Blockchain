@@ -11,6 +11,8 @@ contract SpaceDoggos {
     uint planetCodeModulus = 10 ** planetCodeDigits;
     uint systemCodeModulus = 10 ** systemCodeDigits;
 
+
+    //struct
     struct Doggo {
         string name;
         uint8 breed;
